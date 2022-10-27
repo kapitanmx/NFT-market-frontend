@@ -1,0 +1,18 @@
+import React, {useEffect} from 'react';
+// styles
+import styled from 'styled-components';
+
+const Wrapper = styled.div``;
+
+const Content = styled.div``;
+
+
+const NFTCreator = () => {
+    const [data, setData] = useState({});
+
+    return (
+
+    );
+}
+
+export default NFTCreator;
