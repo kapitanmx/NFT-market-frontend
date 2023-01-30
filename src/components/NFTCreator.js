@@ -7,12 +7,6 @@ const Wrapper = styled.div``;
 const Content = styled.div``;
 
 
-const NFTCreator = () => {
-    const [data, setData] = useState({});
-
-    return (
-
-    );
-}
+const NFTCreator = () => {}
 
 export default NFTCreator;

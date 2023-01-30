@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
         --lightGrey: #eee;
         --medGrey: #353535;
         --darkGrey: #1c1c1c;
+        --violet: #85219C;
         --fontSuperBig: 2.5rem;
         --fontBig: 1.5rem;
         --fontMed: 1.2rem;
@@ -27,6 +28,11 @@ export const GlobalStyle = createGlobalStyle`
             font-size: 2rem;
             font-weight: 600;
             color: var(--white);
+        }
+
+        h2 {
+            margin: 0;
+            padding: 0;
         }
 
         h3 {

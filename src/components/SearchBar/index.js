@@ -27,6 +27,7 @@ const SearchBar = ({ setSearchTerm }) => {
                     onChange={e => setState(e.currentTarget.value)}
                     value={state}
                 />
+                <button>Search</button>
             </Content>
         </Wrapper>
     )

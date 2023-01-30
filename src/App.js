@@ -9,6 +9,7 @@ import {
 
 // Components
 import Header from './components/Header';
+import Footer from "./components/Footer";
 import Home from './components/Home';
 import Login from './components/Login';
 import Marketplace from './components/Marketplace';
@@ -20,7 +21,7 @@ import UserWallet from './components/UserWallet';
 //Styles
 import { GlobalStyle } from './GlobalStyle'
 
-const headerTitles = ['home', 'marketplace', 'user', 'signup'];
+const headerTitles = ['home', 'marketplace', 'user', 'signup', 'login'];
 const marketplaceDropdownTitles = []; 
 const userDropdownTitles = ['userprofile', 'userwallet'];
 const HomeContent = {
@@ -28,6 +29,19 @@ const HomeContent = {
   "heroSubtitle" : "The modern e-commerce solution",
   "heroText" : "Cretated by Mikołaj Wołoszyn",
 }
+const FooterContent = [
+  {
+    'title' : '',
+    'data' : {
+    }
+  },
+  {
+    'title' : '',
+    'data' : {
+      
+    }
+  },
+]
 
 const App = () => (
   <Router>
@@ -36,15 +50,28 @@ const App = () => (
       dropdown={userDropdownTitles}
     />
     <Routes>
-    <Route 
+      <Route 
         path='/' 
+        element={
+        <Home 
+          heroTitle={HomeContent.heroTitle}
+          heroSubtitle={HomeContent.heroSubtitle}
+          heroText={HomeContent.heroText}
+        />
+      }/>
+      {/* {headerTitles.map((pathName) => (
+      <Route 
+        path={`/${pathName}`}
         element={
           <Home 
             heroTitle={HomeContent.heroTitle}
             heroSubtitle={HomeContent.heroSubtitle}
             heroText={HomeContent.heroText}
           />
-        }/>
+        }
+        />
+      )
+      )} */}
       <Route 
         path='/home' 
         element={
@@ -60,6 +87,7 @@ const App = () => (
       <Route path='/userprofile' element={<UserProfile/>}/>
       <Route path='/userwallet' element={<UserWallet />}/>
     </Routes>
+    <Footer />
     <GlobalStyle/>
   </Router>
 );

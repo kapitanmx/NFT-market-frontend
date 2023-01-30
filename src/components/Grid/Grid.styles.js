@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-    max-width: var(--maxWidth);
+    width: var(--maxWidth);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
+    background: var(--lightGrey);
+    border-radius: 20px;
 
     h1 {
         color: var(--medGrey);
+        padding: 10px;
 
         @media screen and (max-width: 768px) {
             font-size: var(--fontBig);
@@ -16,7 +19,7 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, mimax(200px, 1fr));
-    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 2fr));
+    grid-gap: 1.5rem;
 `;
 

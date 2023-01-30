@@ -4,65 +4,64 @@ export const Wrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     position: fixed;
     z-index: 5;
     background: ${({scrolled}) => scrolled ? 'white' : 'black'};
-    margin: 0;
-    padding: 25px 25px;
+    transform: ${({ hideOnScroll }) => hideOnScroll ? 'translateY(-100%)' : 'translateY(0)'};
+    margin: 0 auto;
+    border-bottom: ${({isScrolled}) => isScrolled ? '1px solid var(--lightGrey)' : 'none'};
+    &:before, :after {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+    }
+    h2 {
+        color: ${({scrolled}) => scrolled ? 'black' : 'white'};
+        display: flex;
+        flex-direction: row;
+        align-self: left;
+        margin: 20px auto;
+        width: 20%;
+        height: auto;
+        @media screen and (max-width: 768px) {
+            width: 50%;
+            margin: 0;
+        }
+    }
+    @media screen and (max-width: 900px) {
+        padding: 25px;
+        h2 {
+            color: ${({scrolled}) => scrolled ? 'black' : 'white'};
+            padding: 0;
+        }
+
+    }
 `;
 
 export const Content = styled.div`
-    width: var(--maxWidth);
+    width: 40%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: 25px auto;
+    a {
+        text-decoration: none;
+        color: var(--black);
+    }
     @media screen and (max-width: 900px) {
         display: none;
     }
 `;
 
-export const Element = styled.button`
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    &:focus {
-        outline: none;
-    }
-    background: transparent;
-    p {
-        font-size: var(--fontMed);
-        color: ${({scrolled}) => scrolled ? 'black' : 'white'}
+export const LinkButton = styled.div`
+    color: ${({isScrolled}) => isScrolled ? '#000' : 'white'};
+    @media screen and (max-width: 900px) {
+        color: var(--white);
+        align-self: left;
     }
 `;
 
-export const DropdownList = styled.div`
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--white);
-    color: black;
-    transform: ${({active}) => active ? 'translateY(0)' : 'translateY(-100%)'};
-    width: 100%;
-    height: 50vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: transform 0.3s ease-in-out;
-`;
-
-export const DropdownListElement = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
-    background: var(--white);
-    margin: 20px 20px;
-    padding: 10px 10px;
-    border-bottom: 1px solid black;
-`;
 
 export const MobileMenu = styled.div`
     display: none;
@@ -109,15 +108,17 @@ export const MobileMenu = styled.div`
 
 export const MobileButton = styled.button`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: 2rem;
     color: var(--white);
     background: var(--black);
     width: 100%;
-    margin: 15px 0;
-    padding: 30px 60px;
+    padding: 20px 50px;
     cursor: pointer;
     border: none;
+    &:hover {
+
+    }
     &:focus {
         outline: none;
     }

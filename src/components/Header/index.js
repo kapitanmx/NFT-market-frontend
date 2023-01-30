@@ -8,7 +8,8 @@ import {
     DropdownListElement,
     MobileMenu,
     MobileButton,
-    MobileBurger
+    MobileBurger,
+    LinkButton
 } from './Header.styles';
 
 const Header = ({titles, dropdown}) => {
@@ -31,35 +32,43 @@ const Header = ({titles, dropdown}) => {
             setIsScrolled(false);
             return;
         });
+        window.removeEventListener('scroll', () => {return; })
     }, []);
 
-    // useEffect(() => {
-    //     var lastScrollTop = 0;
-    //     window.addEventListener('scroll', () => {
-    //         let detectedDirection = window.pageYOffset || document.documentElement.scrollTop;
-    //         if (detectedDirection < lastScrollTop) {
-    //             setHideOnScroll(true);
-    //             return;
-    //         }
-    //         setHideOnScroll(false);
-    //         return;
-    //     })
-    // }, []);
+    useEffect(() => {
+        const lastScrollTop = 0;
+        window.addEventListener("scroll", () => {
+            const st = window.pageYOffset; 
+            if (st > lastScrollTop) {
+                setHideOnScroll(true);
+            }
+            setHideOnScroll(false);
+        }); 
+        window.removeEventListener("scroll", () => {return;})
+    }, []);
 
     useEffect(() => {
             if (window.innerWidth <= 750) {
                 setIsMobile(true);
-                return;
+                return; 
             }
             setIsMobile(false);
             return;
-    }, [])
+    }, []);
 
-    console.log(elementTitles.map(title => {return title}))
+    const goToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
+    // console.log(elementTitles.map(title => {return title}))
 
     return (
         <>
-            <Wrapper scrolled={isScrolled}>
+            <Wrapper scrolled={isScrolled} hideOnScroll={hideOnScroll}>
+                    <h2>NFTMarket</h2>
                     <>
                         <MobileBurger isScrolled={isScrolled} open={open} onClick={() => setOpen(!open)}>
                             <div />
@@ -68,7 +77,7 @@ const Header = ({titles, dropdown}) => {
                         </MobileBurger>
                         <MobileMenu open={open} setOpen={open}>
                             {elementTitles.map(title => (
-                                <MobileButton>
+                                <MobileButton onClick={() => setOpen(!open)}>
                                     <Link to={`/${title}`}>
                                         <p>{title}</p>
                                     </Link>
@@ -83,19 +92,14 @@ const Header = ({titles, dropdown}) => {
                             //         <p>{title}</p>
                             //     </Element>
                             // ) || ()
-                                <Element scrolled={isScrolled}>
-                                    <Link to={`/${title}`}>
-                                        <p>{title}</p>
-                                    </Link>
-                                </Element>
+                            <Link to={`/${title.toLowerCase()}`}>
+                                <LinkButton isScrolled={isScrolled} onClick={goToTop}>
+                                    {title}
+                                </LinkButton>
+                            </Link>
                         ))}
                     </Content>
             </Wrapper>
-            <DropdownList active={active}>
-                {dropdownTitles.map(title => {
-                    return <DropdownListElement active={active}>{title}</DropdownListElement>
-                })}
-            </DropdownList>
         </>
     );
 }

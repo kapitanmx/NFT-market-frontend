@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import {Wrapper, Container, StyledInput, StyledButton} from './LoginForm.styles'
 
 const LoginForm = () => {
@@ -24,6 +25,9 @@ const LoginForm = () => {
                         type='text'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                     />
+                     <ReCAPTCHA 
+                        theme="light"
                      />
                 </Container>
                 <StyledButton onClick={handleSubmit}/>
